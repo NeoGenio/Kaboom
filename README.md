@@ -26,7 +26,8 @@ I have absolutely no idea. Mabye try WSL. Good luck!
 ## Building
 
 ```console
-nasm -f bin src/bootSect.s -o bin/bootSect.bin
+cd src
+nasm -f bin bootSect.s -o ../bin/bootSect.bin
 ```
 
 ## Running Kaboom

@@ -9,31 +9,23 @@ mov bh, 0x00
 mov bl, 0x01
 int 0x10
 
-mov ah, 0x0e
-
 mov bx, string
-call print
+call print_string
 
 mov bx, string2
-call print
+call print_string
 
-print:
-    mov al, [bx]
-    cmp al, 0
-    je print_end
-    int 0x10
-    add bx, 1
-    jmp print
+mov dx, 0x12ab
+call print_hex
 
-print_end:
-    ret
+jmp $
 
-string: db 'This is a string!', 0xa, 0xd, 0
-string2: db 'This is also a string.', 0
+%include 'print_string.s'
+%include 'print_hex.s'
 
-end:
-    jmp $
+string: db 'Char test: ABC abc', 0xa, 0xd, 0
+string2: db 'Hex test: ', 0
 
-    times 510-($-$$) db 0
+times 510-($-$$) db 0
 
-    dw 0xaa55
+dw 0xaa55
